@@ -1,0 +1,36 @@
+{% extends 'infirmier/infirmier.html' %}
+{% block content %}
+<div class="page-wrapper">
+
+<div class="card mt-3 ml-4">
+    <div class="card-header">
+        <h1>Information of {{ ambulance_item.name}}</h1>
+    </div>
+         <div class="card-body">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Name :</th>
+                    <td>{{ ambulance_item.name }}</td>
+                </tr>
+                
+                <tr>
+                    <th>Quantity :</th>
+                    <td>{{ ambulance_item.quantity}}</td>
+                </tr> 
+                
+                <tr>
+                    <th>Purchase Date :</th>
+                    <td>{{ ambulance_item.purchase_date}}</td>
+                </tr> 
+                
+            </table>
+               
+            <!-- Add more form fields here as needed -->
+
+            <a href="{% url 'ambulance_items' %}"><i class="fa-solid fa-arrow-right-from-bracket"> Back</i></a>
+
+
+        </div>
+    </div>
+</div>
+{% endblock %}

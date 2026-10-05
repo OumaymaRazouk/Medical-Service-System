@@ -1,0 +1,108 @@
+{% extends 'Medecin/medecin.html' %}
+{% block content %}
+<div class="page-wrapper">
+
+<div class="card mt-3 ml-4">
+    <div class="card-header">
+        <h1>Medical infrmation</h1>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered">
+            <tr>
+                <th>Medical Record Number:</th>
+                <td>{{ inf.numero.numero }}</td>
+                <th>Employee Name:</th>
+                <td>{{ inf.numero.patient }}</td>
+            </tr>
+            
+            <tr>
+                <th>Blood Group:</th>
+                <td>{{ inf.groupe_singuins }}</td>
+                <th>Military Situation:</th>
+                <td>{{ inf.situation_militaire }}</td>
+            </tr>
+          
+            <tr>
+                <th>Maladies:</th>
+                <td>{{ inf.maladies }}</td>
+                <th>Surgical Interventions:</th>
+                <td>{{ inf.intervention_chirurgicales }}</td>
+            </tr>
+            
+            <tr>
+                <th>Accidents:</th>
+                <td>{{ inf.accidents }}</td>
+                <th>Work-related Accidents:</th>
+                <td>{{ inf.accidents_travail }}</td>
+            </tr>
+            <tr>
+                <th>Professional Illnesses:</th>
+                <td>{{ inf.maladies_prof }}</td>
+           
+                <th>Surgeries (Companions):</th>
+                <td>{{ inf.compagnes }}</td>
+            </tr>
+            <tr>
+                <th>Injuries:</th>
+                <td>{{ inf.blessures }}</td>
+            
+                <th>Permanent Partial Disability (IPP):</th>
+                <td>{{ inf.IPP }}</td>
+            </tr>
+            <tr>
+                <th>Father's Medical History:</th>
+                <td>{{ inf.ant_pere }}</td>
+            
+                <th>Mother's Medical History:</th>
+                <td>{{ inf.ant_mere }}</td>
+            </tr>
+            <tr>
+                <th>Siblings' Medical History:</th>
+                <td>{{ inf.ant_freres }}</td>
+            
+                <th>Sisters' Medical History:</th>
+                <td>{{ inf.ant_soeurs }}</td>
+            </tr>
+            <tr>
+                <th>Spouse's Medical History:</th>
+                <td>{{ inf.ant_conjoint }}</td>
+            
+                <th>Children's Medical History:</th>
+                <td>{{ inf.ant_enfant }}</td>
+            </tr>
+            <tr>
+                <th>Professional Medical History:</th>
+                <td>{{ inf.ant_professionneles }}</td>
+            
+                <th>Vaccination: Variole</th>
+                <td>{{ inf.variole }}</td>
+            </tr>
+            <tr>
+                <th>Vaccination: Diphterie</th>
+                <td>{{ inf.diphterie }}</td>
+            
+                <th>Vaccination: Tetanos</th>
+                <td>{{ inf.tetanos }}</td>
+            </tr>
+            <tr>
+                <th>Vaccination: TAB</th>
+                <td>{{ inf.tab }}</td>
+           
+                <th>Vaccination: TABDT</th>
+                <td>{{ inf.tabdt }}</td>
+            </tr>
+            <tr>
+                <th>Other Vaccinations:</th>
+                <td>{{ inf.autres }}</td>
+            
+                <th>Serum:</th>
+                <td>{{ inf.serum }}</td>
+            </tr>
+        </table>
+        <a href="{% url 'infos' %}"><i class="fa-solid fa-arrow-right-from-bracket">Back</i></a>
+
+
+    </div>
+</div>
+</div>
+{% endblock %}

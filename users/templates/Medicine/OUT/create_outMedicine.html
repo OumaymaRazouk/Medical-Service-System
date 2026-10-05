@@ -1,0 +1,77 @@
+{% extends 'infirmier/infirmier.html' %}
+{% block content %}
+{% load static %}
+
+<div class="page-wrapper">
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 align-self-center">
+                <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Add Out Stock Medicine</h3>
+                  <div class="nk-block-des text-soft">
+                                    <p>You can add an Out Stock Medicine by filling in these fields.</p>
+                 </div>
+            </div>
+    </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">                    
+                                    <form method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="{{ form.patient.id_for_label }}">Patient :</label>
+                                                    <div class="form-group mb-4">
+                                                        {{ form.patient}}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="{{ form.medicine.id_for_label }}">Medicine :</label>
+                                                    <div class="form-group mb-4">
+                                                        {{ form.medicine}}
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="{{ form.date.id_for_label }}">Date :</label>
+                                                    <div class="form-group mb-4">
+                                                        <input required required type="date" name="date" class="form-control"
+                                                            placeholder="Date">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="{{ form.quantity.id_for_label }}">Quantity :</label>
+                                                    <div class="form-group mb-4">
+                                                        <input required required type="number" name="quantity" class="form-control"
+                                                            placeholder="Quantity">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-10">
+                                                    <label class="form-label" for="{{ form.remark.id_for_label }}">Remark :</label>
+                                                    <div class="form-group mb-4">
+                                                        <textarea rows="4" name="remark" class="form-control"
+                                                            placeholder="Remark"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-actions">
+                                                <div class="text-end">
+                                                    <button type="submit" class="btn btn-info">Add</button>
+                                                    <button type="reset" class="btn btn-dark"><a href="{% url 'medicines' %}" class="text-white">Reset</a></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

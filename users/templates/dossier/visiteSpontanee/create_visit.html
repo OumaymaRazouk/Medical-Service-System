@@ -1,0 +1,96 @@
+{% extends 'infirmier/infirmier.html' %}
+{% block content %}
+{% load static %}
+
+<div class="page-wrapper">
+    <div class="nk-content ">
+        <div class="container-fluid">
+            <div class="nk-content-inner">
+                <div class="nk-content-body">
+                    <div class="nk-block-head nk-block-head-sm">
+                        <div class="nk-block-between">
+                            <div class="nk-block-head-content">
+                                <h2 class="nk-block-title page-title">Create Spontaneous Medical Visit</h2>
+                                <div class="nk-block-des text-soft">
+                                    <p>You can create a spontaneous medical visit by filling in these fields.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nk-block">
+                        <div class="card card-bordered">
+                            <div class="card-inner">
+                                <div class="row gy-5">
+                                    <form method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <label class="form-label" for="{{ form.patient.id_for_label }}">Employee :</label>
+                                                    <div class="form-group mb-3">
+                                                        {{ form.patient}}
+                                                    </div>
+                                                    <label class="form-label" for="{{ form.visit_date.id_for_label }}">Visit Date :</label>
+                                                    <div class="form-group mb-3">
+                                                        <input type="date" name="visit_date" class="form-control"
+                                                               placeholder="Visit Date">
+                                                    </div>
+                                                    <label class="form-label" for="{{ form.temperature.id_for_label }}">Temperature :</label>
+                                                    <div class="form-group mb-3">
+                                                        <input type="number" name="temperature" class="form-control"
+                                                               placeholder="Temperature">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <label class="form-label" for="{{ form.blood_pressure.id_for_label }}">Blood Pressure :</label>
+                                                    <div class="form-group mb-3">
+                                                        <input type="text" name="blood_pressure" class="form-control"
+                                                               placeholder="Blood Pressure">
+                                                    </div>
+                                                    <label class="form-label" for="{{ form.oxygen_saturation.id_for_label }}">Oxygen Saturation :</label>
+                                                    <div class="form-group mb-3">
+                                                        <input type="number" name="oxygen_saturation" class="form-control"
+                                                               placeholder="Oxygen Saturation">
+                                                    </div>
+                                                    <label class="form-label" for="{{ form.heart_rate.id_for_label }}">Heart Rate :</label>
+                                                    <div class="form-group mb-3">
+                                                        <input type="number" name="heart_rate" class="form-control"
+                                                               placeholder="Heart Rate">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <label class="form-label" for="{{ form.blood_glucose.id_for_label }}">Blood Glucose :</label>
+                                                    <div class="form-group mb-3">
+                                                        <input type="number" name="blood_glucose" class="form-control"
+                                                               placeholder="Blood Glucose">
+                                                    </div>
+                                                    <label class="form-label" for="{{ form.symptoms.id_for_label }}">Symptoms :</label>
+                                                    <div class="form-group mb-5">
+                                                        <textarea class="form-control" name="symptoms"
+                                                                  placeholder="Symptoms" rows="3"></textarea>
+                                                    </div>
+                                                    <label class="form-label" for="{{ form.observations.id_for_label }}">Observations :</label>
+                                                    <div class="form-group mb-5">
+                                                        <textarea class="form-control" name="observations"
+                                                                  placeholder="Observations" rows="3"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-actions">
+                                                <div class="text-end">
+                                                    <button type="submit" class="btn btn-info">Create Visit</button>
+                                                    <button type="reset" class="btn btn-dark"><a href="{% url 'visits' %}" class="text-white">Reset</a></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,86 @@
++% extends 'Medecin/medecin.html' %}
+
+{% block content %}
+
+<h1>{{ menu_title }}</h1>
+<p>{{ menu_content }}</p>
+<div class="page-wrapper">
+<div class="row" >
+  <div class="form-container">
+
+    <div class="card my-5" style="margin:200px;" id="printContent">
+          {% load static %}
+    <center><img src="{% static 'nomac-logo.png'%}" alt="Image" style=" width: 200px; height: auto;"></center>
+    <!-- Le reste de votre contenu ... -->
+<br>
+    <center><h1 class="surligne-sous-ligne">CERTIFICAT DE REPRISE DE TRAVAIL</h1></center>
+
+      <br>
+        <p><strong><U> Objet:</U></strong> Attestation de reprise du travail </p>
+<br>
+      <p>Je soussigné, Monsieur <B>{{user.first_name}}</B>, Médecin de travail de l'entreprise NOMAC:</p>
+        <p>Certifie que l'examen de M/Mme  <B>{{visite.patient.name}}</B></p>
+        <p class="espace-gauche">Date de Naissance: <B>{{visite.patient.date_of_birth|date:"d-m-Y "}}</B></p>
+
+      <p class="espace-gauche">Adresse: <B>{{visite.patient.address}}</B></p>
+      <p class="espace-gauche">Empoyé à: <B> {{visite.patient.company}}</B></p>
+        <p class="espace-gauche">Période de congé médical : <B> {{visite.texte_certificat}}</B> </p>
+        <p>Suite à l'évaluation médicale de l'employé, au regard de sa situation médicale actuelle, nous constatons ce qui suit :</p>
+
+
+    <form method="post">
+    {% csrf_token %}
+    <div class="espace-gauche">
+        {{ form.choix }}
+    </div>
+      {{ visite.get_choix_display}}
+
+
+  </form>
+      <br>
+        <br>
+      <p class ="escape_more">Fait à <B> Ouarzazate </B>on <B>{{visite.date|date:"d-m-Y " }}</B> </p>
+
+       <br>
+        <p class ="escape_more">Signature:<B> {{user}}</B></p>
+
+<style>
+        .surligne-sous-ligne {
+            text-decoration: underline;
+        }
+        .espace-gauche {
+            margin-left: 80px; /* Vous pouvez ajuster cette valeur selon vos préférences */
+        }
+
+        .escape_more{
+            margin-left: 400px;
+        }
+        @media print {
+            .no-print {
+                display: none;
+    }
+}
+    </style>
+</div>
+      <div class=" no-print">
+    <!-- Your content here -->
+    <center><a href="#" onclick="printDiv('printContent');" class="btn btn-sm btn-primary">
+        <i class="fas fa-print no-print"></i> Print
+    </a></center>
+  </div>
+</div>
+      </div></div>
+
+
+
+<script>
+    function printDiv(divId) {
+        var printContents = document.getElementById(divId).innerHTML;
+        var originalContents = document.body.innerHTML;
+        document.body.innerHTML = printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+    }
+</script>
+
+{% endblock %}

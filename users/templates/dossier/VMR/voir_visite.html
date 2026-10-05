@@ -1,0 +1,88 @@
+{% extends 'Medecin/medecin.html' %}
+
+{% block content %}
+
+<h1>{{ menu_title }}</h1>
+<p>{{ menu_content }}</p>
+<div class="page-wrapper">
+<div class="row" >
+  <div class="form-container">
+
+    <div class="card my-5" style="margin:200px;" id="printContent">
+          {% load static %}
+    <center><img src="{% static 'nomac-logo.png'%}" alt="Image" style=" width: 200px; height: auto;"></center>
+    <!-- Le reste de votre contenu ... -->
+<br>
+<div  style="margin:15px;">
+    <center><h1 class="surligne-sous-ligne">PHYSICAL FITNESS CERTIFICATE</h1></center>
+
+      <br>
+        <p><strong><U> Object:</U></strong>Return to Work </p>
+<br>
+
+<p>I, the undersigned, Mr. <B>{{user}}</B>, Occupational Health Physician at the company NOMAC:</p>
+
+<p>Certify that the examination of Mr./Ms. <B>{{visite.patient.name}}</B></p>
+<p class="left-space">Date of Birth: <B>{{visite.patient.date_of_birth|date:"d-m-Y "}}</B></p>
+  <p class="left-space">Full Address: <B>{{visite.patient.address}}</B></p>
+       <p class="left-space">Employed at: <B>{{visite.patient.company}}</B></p> 
+       <p class="left-space">Date of Recruitment: <B>{{visite.patient.start_date|date:"d-m-Y"}}</B></p>
+      <p >Furthermore, I declare that the candidate is physically sound, free from any tuberculous, mental, cancerous, or poliomyelitic condition.</p>
+     <p > Based on the above observations:</p><form method="post">
+    {% csrf_token %}
+    <div class="left-space">
+        {{ form.choix }}
+    </div>
+    <B>
+      {{ visite.get_choix_display}}
+    </B> on:<B> {{ visite.date }}</B>
+    
+
+  </form>
+      <br>
+        <br>
+        <p class ="more-space">Done in <B> Ouarzazate </B> on <B>{% now "Y-m-d H:i:s" %}</B> </p>
+     
+       <br>
+        <p class ="more-space">Signature:<B> {{user}}</B></p>
+      </div>
+<style>
+        .surligne-sous-ligne {
+            text-decoration: underline;
+        }
+        .left-space {
+            margin-left: 80px; /* Vous pouvez ajuster cette valeur selon vos préférences */
+        }
+
+        .more-space{
+            margin-left: 400px;
+        }
+        @media print {
+            .no-print {
+                display: none;
+    }
+}
+    </style>
+</div>
+      <div class=" no-print">
+    <!-- Your content here -->
+    <center><a href="#" onclick="printDiv('printContent');" class="btn btn-sm btn-primary">
+        <i class="fas fa-print no-print"></i> Print
+    </a></center>
+  </div>
+</div>
+      </div></div>
+
+
+
+<script>
+    function printDiv(divId) {
+        var printContents = document.getElementById(divId).innerHTML;
+        var originalContents = document.body.innerHTML;
+        document.body.innerHTML = printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+    }
+</script>
+
+{% endblock %}

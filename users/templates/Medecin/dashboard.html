@@ -1,0 +1,124 @@
+{% extends 'Medecin/medecin.html' %}
+{% block content %}
+import json
+		<!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-7 align-self-center">
+                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Welcome {{ request.user.first_name | upper}}!</h3>
+                        <div class="d-flex align-items-center">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb m-0 p-0">
+                                    <li>Dashboard
+									</li>
+									<li> <i data-feather="chevron-right"
+                                        class="svg-icon"></i></span></li>
+									<li>
+										<a class="active" href="#"> Home</a>
+									</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- *************************************************************** -->
+                <!-- Start First Cards -->
+                <!-- *************************************************************** -->
+                <div class="row">
+                    <!-- Column -->
+                    <div class="col-md-6 col-lg-3 col-xlg-3">
+                        <div class="card card-hover">
+                            <div class="p-2 bg-primary text-center">
+                                <h1 class="font-light text-white">{{patient_count}}</h1>
+                                <a href="{% url 'patients' %}"><h6 class="text-white">Employees</h6></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                    <div class="col-md-6 col-lg-3 col-xlg-3">
+                        <div class="card card-hover">
+                            <div class="p-2 bg-cyan text-center">
+                                <h1 class="font-light text-white">{{medecin_count}}</h1>
+                                <h6 class="text-white">Doctor</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                    <div class="col-md-6 col-lg-3 col-xlg-3">
+                        <div class="card card-hover">
+                            <div class="p-2 bg-success text-center">
+                                <h1 class="font-light text-white">{{record_count}}</h1>
+                                <a href="{% url 'add_dossier' %}"><h6 class="text-white">Medical record </h6></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                    <div class="col-md-6 col-lg-3 col-xlg-3">
+                        <div class="card card-hover">
+                            <div class="p-2 bg-danger text-center">
+                                <h1 class="font-light text-white">{{laboratory_count}}</h1>
+                                <a href="{% url 'liste_labo' %}"><h6 class="text-white">Laboratory</h6></a>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+
+                <!-- *************************************************************** -->
+                <!-- End First Cards -->
+                <!-- *************************************************************** -->
+                <!-- *************************************************************** -->
+                <!-- Start Sales Charts Section -->
+                <!-- *************************************************************** -->
+                
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const repriseData = JSON.parse('{{ reprise_data|safe }}'); // Passer les données de Django au format JSON
+    console.log('{{ reprise_data|safe }}');
+
+
+    const months = [
+        "Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
+        "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
+    ];
+
+    const ctx = document.getElementById("repriseChart").getContext("2d");
+    const repriseChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: repriseData.map(entry => months[entry.month - 1]),
+            datasets: [{
+                label: "Nombre de Visites de Reprise",
+                data: repriseData.map(entry => entry.count),
+                backgroundColor: "rgba(75, 192, 192, 0.6)",
+                borderColor: "rgba(75, 192, 192, 1)",
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+});
+
+</script>
+{%endblock%}

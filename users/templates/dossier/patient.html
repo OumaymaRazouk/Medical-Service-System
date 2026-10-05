@@ -1,0 +1,65 @@
+
+{% extends 'dossier/dossier.html' %}
+
+{% block menu_content %}
+
+
+    <div class="card mt-3 ml-4">
+        <div class="card-header">
+            <h1>Employee Information</h1>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    {% if patient.photo %}
+                    <div class="mb-4">
+                        <img src="/media/{{ patient.photo }}" class="img-fluid rounded" alt="Patient Photo">
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="col-md-8">
+                    <dl class="row">
+                        <dt class="col-sm-3">Name:</dt>
+                        <dd class="col-sm-9">{{ patient.name }}</dd>
+    
+                        <dt class="col-sm-3">Date of Birth:</dt>
+                        <dd class="col-sm-9">{{ patient.date_of_birth }}</dd>
+    
+                        <dt class="col-sm-3">Age:</dt>
+                        <dd class="col-sm-9">{{ patient.age }}</dd>
+    
+                        <dt class="col-sm-3">Origin:</dt>
+                        <dd class="col-sm-9">{{ patient.origin }}</dd>
+    
+                        <dt class="col-sm-3">Address:</dt>
+                        <dd class="col-sm-9">{{ patient.address }}</dd>
+    
+                        <dt class="col-sm-3">Family Status:</dt>
+                        <dd class="col-sm-9">{{ patient.family_status }}</dd>
+    
+                        <dt class="col-sm-3">Company:</dt>
+                        <dd class="col-sm-9">{{ patient.company }}</dd>
+    
+                        <dt class="col-sm-3">Start Date:</dt>
+                        <dd class="col-sm-9">{{ patient.start_date}}</dd>
+    
+                        <dt class="col-sm-3">Department:</dt>
+                        <dd class="col-sm-9">{{ patient.department}}</dd>
+    
+                        <dt class="col-sm-3">Job Position:</dt>
+                        <dd class="col-sm-9">{{ patient.job_position }}</dd>
+    
+                        <dt class="col-sm-3">Area:</dt>
+                        <dd class="col-sm-9">{{ patient.area }}</dd>
+                    </dl>
+                    
+                    <a href="{{ patient.risk.url}}" target="_blank" class="btn btn-success">
+                        <i class="fas fa-download"></i> Risk File
+                    </a>
+
+        </table>
+
+
+    </div>
+
+{% endblock %}

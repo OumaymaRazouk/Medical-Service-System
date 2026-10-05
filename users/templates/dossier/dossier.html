@@ -1,0 +1,62 @@
+{% extends 'Medecin/medecin.html' %}
+{% block content %}
+<div class="page-wrapper">
+<br>
+
+    <br>
+    
+       <h1 class="page-title text-center font-weight-medium ">Medical Record</h1>
+       <nav class="menu">
+        <ul>
+            <li><a href="{% url 'view_patient_dossier' patient.pk %}"><i data-feather="user" class="feather-icon"></i> <strong>Edentity</strong></a></li>
+            <li><a href="{% url 'view_info' patient.pk%}"><i data-feather="file" class="feather-icon"></i> Initial Medical Examination </a></li>
+            <li><a href="{% url 'liste_vms_par_patient' patient.pk%}"><i data-feather="clipboard" class="feather-icon"></i> Systematic medical visit</a></li>
+            <li><a href="{% url 'liste_vmr_par_patient' patient.pk%}"><i data-feather="clipboard" class="feather-icon"></i> Recovery medical visit</a></li>
+            <li><a href="{% url 'liste_surv_par_patient' patient.pk%}"><i data-feather="folder" class="feather-icon"></i> Medical Card</a></li>
+        </ul>
+    </nav>
+
+
+        {% block menu_content %}
+        {% endblock %}
+<style>
+    /* Reset default margins and paddings for the entire page */
+
+
+/* Style for the navigation menu */
+.menu {
+    background-color:#5995fd;
+    color: #fefefe;
+    padding-left:50px;
+
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.menu li {
+    margin: 0 15px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.menu a:hover {
+    color: #c6dafc;
+}
+.menu h2{
+
+    text-align: center;
+}
+</style>
+</div>
+{% endblock %}
+

@@ -1,0 +1,60 @@
+{% extends 'infirmier/infirmier.html' %}
+{% block content %}
+<div class="page-wrapper">
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-7 align-self-center">
+                <h2 class="page-title text-truncate text-dark font-weight-medium mb-1">Movement List</h2>
+                <div class="d-flex align-items-center">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb m-0 p-0">
+                            <li class="breadcrumb-item">Home </li>
+                            <li class="breadcrumb-item text-muted active" aria-current="page">Pharmacy</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-5 align-self-center">
+                <div class="customize-input float-end">
+
+                    <a href="{% url 'download_movements' 'pdf' %}" class="btn btn-secondary">
+                        <i class="fas fa-file-pdf mr-1"></i> Download PDF
+                    </a>
+                    
+                    <a href="{% url 'download_movements' 'excel' %}" class="btn btn-secondary">
+                        <i class="fas fa-file-excel mr-1"></i> Download Excel
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+
+<div class="table-responsive">
+<table id="zero_config" class="table border table-striped table-bordered text-nowrap">
+ 
+                <thead>
+            <tr>
+                <th>Medicine Name</th>
+                <th>Timestamp</th>
+                <th>Action</th>
+                <th>Quantity Change</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for movement in movements %}
+            <tr>
+                <td>{{ movement.medicine.name }}</td>
+                <td>{{ movement.timestamp }}</td>
+                <td>{{ movement.action }}</td>
+                <td>{{ movement.quantity_change }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{%endblock%}

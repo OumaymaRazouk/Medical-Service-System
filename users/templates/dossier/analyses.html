@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form id="form-analyses">
+    {% for analyse in analyses %}
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="analyses" value="{{ analyse.id }}">
+            <label class="form-check-label" for="analyses">{{ analyse.nom }}</label>
+        </div>
+    {% endfor %}
+</form>
+
+
+</body>
+</html>

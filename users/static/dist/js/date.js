@@ -1,0 +1,12 @@
+var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+ var currentDate = new Date();
+var month = months[currentDate.getMonth()];
+var day = currentDate.getDate();
+var year = currentDate.getFullYear();
+var hours = currentDate.getHours();
+var minutes = ('0' + currentDate.getMinutes()).slice(-2);
+var ampm = hours >= 12 ? 'pm' : 'am';
+hours = hours % 12;
+hours = hours ? hours : 12;
+var formattedDateTime = month + ' ' + day + ', ' + year + ', ' + hours + ':' + minutes + ' ' + ampm;
+document.write(formattedDateTime);

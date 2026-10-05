@@ -1,0 +1,225 @@
+{% extends 'Medecin/medecin.html'  %}
+{% block content %}
+
+<div class="page-wrapper">
+<div class="card mt-0 ml-2">
+    <div class="card-header">
+            <center><h1>VMS Details</h1></center>
+<div class="card-body">
+    <table class="table table-bordered">
+        <tr>
+            <th>Date:</th>
+            <td>{{ visite.date |date:"d-m-Y"}}</td>
+            <th>Denture:</th>
+            <td>{{ visite.denture }}</td>
+        </tr>
+        <tr>
+            <th>Audition OD:</th>
+            <td>{{ visite.audition_od }}</td>
+            <th>Audition OG:</th>
+            <td>{{ visite.audition_og }}</td>
+        </tr>
+
+        <tr>
+            <th>Vision OD:</th>
+            <td>{{ visite.vision_od }}</td>
+            <th>Vision OG:</th>
+            <td>{{ visite.vision_og }}</td>
+        </tr>
+
+        <tr>
+            <th>Size:</th>
+            <td>{{ visite.taille }}</td>
+            <th>Weight:</th>
+            <td>{{ visite.poids }}</td>
+        </tr>
+
+        <tr>
+            <th>Chest perimeter :</th>
+            <td>{{ visite.per_thor }}</td>
+            <th>Respiratory capacity:</th>
+            <td>{{ visite.cap_resp }}</td>
+        </tr>
+
+        <tr>
+            <th>Skin and appendages :</th>
+            <td>{{ visite.peau_phaneres }}</td>
+            <th>Locomotor:</th>
+            <td>{{ visite.locomateur }}</td>
+        </tr>
+
+        <tr>
+            <th>Dynamometer :</th>
+            <td>{{ visite.dynamometre }}</td>
+            <th>Respiratory:</th>
+            <td>{{ visite.respiratoire }}</td>
+        </tr>
+
+        <tr>
+            <th>Radioscopic:</th>
+            <td>{{ visite.radioscopique }}</td>
+            <th>Vessels :</th>
+            <td>{{ visite.vaisseaux }}</td>
+        </tr>
+
+        <tr>
+            <th>Varicose veins :</th>
+            <td>{{ visite.varices }}</td>
+            <th>Heart :</th>
+            <td>{{ visite.coeur }}</td>
+        </tr>
+
+        <tr>
+            <th>Ganglions:</th>
+            <td>{{ visite.gangalions }}</td>
+            <th>Pulse:</th>
+            <td>{{ visite.pouls }}</td>
+        </tr>
+
+        <tr>
+            <th>Blood pressure:</th>
+            <td>{{ visite.TA }}</td>
+            <th>Abdomen:</th>
+            <td>{{ visite.abdomen }}</td>
+        </tr>
+
+        <tr>
+            <th>Liver:</th>
+            <td>{{ visite.foie }}</td>
+            <th>Mouth:</th>
+            <td>{{ visite.bouche }}</td>
+        </tr>
+
+        <tr>
+            <th>Spleen :</th>
+            <td>{{ visite.rate }}</td>
+            <th>Scar :</th>
+            <td>{{ visite.cicatrice }}</td>
+        </tr>
+
+        <tr>
+            <th>Gonorrhoea:</th>
+            <td>{{ visite.blenno }}</td>
+            <th>Period :</th>
+            <td>{{ visite.regles }}</td>
+        </tr>
+
+        <tr>
+            <th>Neuro-psychism :</th>
+            <td>{{ visite.neuro_psychisme }}</td>
+            <th>Nervousness:</th>
+            <td>{{ visite.nervosisme }}</td>
+        </tr>
+
+        <tr>
+            <th>Tremor :</th>
+            <td>{{ visite.tremblement }}</td>
+            <th>Balance :</th>
+            <td>{{ visite.equilibre }}</td>
+        </tr>
+
+        <tr>
+            <th>Romberg's sign:</th>
+            <td>{{ visite.romberg }}</td>
+            <th>Osteo-cutaneous reflexes:</th>
+            <td>{{ visite.reflxes_oc }}</td>
+        </tr>
+
+        <tr>
+            <th>Tendon reflexes::</th>
+            <td>{{ visite.reflexes_trend }}</td>
+            <th>CUTT test:</th>
+            <td>{{ visite.cutt }}</td>
+        </tr>
+
+        <tr>
+            <th>Sedimentation:</th>
+            <td>{{ visite.sedimenation }}</td>
+            <th>Sputum:</th>
+            <td>{{ visite.crachat }}</td>
+        </tr>
+
+        <tr>
+            <th>Stool :</th>
+            <td>{{ visite.selle }}</td>
+            <th>Urine :</th>
+            <td>{{ visite.urines }}</td>
+        </tr>
+
+        <tr>
+            <th>Blood :</th>
+            <td>{{ visite.get_sang_display }}</td>
+            <th>Situation:</th>
+            <td>{{ visite.get_situation_display }}</td>
+        </tr>
+
+        <tr>
+            <th>To monitor every</th>
+            <td>{{ visite.get_surveiller_display }}</td>
+            <th>Commentaire:</th>
+            <td>{{ visite.commentaire }}</td>
+        </tr>
+        <tr>
+        <th>Analyzes to be done</th>
+            <td>
+                {% for analyse in visite.analyses.all %}
+                {{ analyse.name }}
+                {% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </td>
+
+        <th>Radios to be done</th>
+            <td>
+                {% for radio in visite.radios.all %}
+                {{ radio.name }}
+                {% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </td>
+    </tr>
+        <tr>
+         <th>Files related to scans:</th>
+            <td>
+               {% for labo in visite.laboratoire_set.all %}
+               <strong>analysis of {{ labo.analyse.name }}:</strong><br>
+                   {% for analyse in labo.analyse.all %}
+                      {{ analyse.name }}
+                     {% if not forloop.last %}, {% endif %}
+                   {% endfor %}
+                  <br>
+                  {% if labo.fichier %}
+                    <a href="{{ labo.fichier.url }}" target="_blank">view file</a>
+                  {% else %}
+                   <p>Aucun fichier disponible</p>
+                  {% endif %}
+                <br><br>
+               {% endfor %}
+            </td>
+         <th>Files related to scans:</th>
+            <td>
+               {% with LaboratoireRad=visite.laboratoirerad_set.all %}
+   {% for labo in LaboratoireRad %}
+      <strong>radios of {{ labo.radio.name }}:</strong><br>
+      {% for radio in labo.radio.all %}
+         {{ radio.name }}
+         {% if not forloop.last %}, {% endif %}
+      {% endfor %}
+      <br>
+      {% if labo.fichier %}
+         <a href="{{ labo.fichier.url }}" target="_blank">view file</a>
+      {% else %}
+         <p>Aucun fichier disponible</p>
+      {% endif %}
+      <br><br>
+   {% endfor %}
+{% endwith %}
+            </td>
+         </tr>
+
+    </table>
+    <p><a href="{% url 'add_dossier' %}">Retour à la liste des visites</a></p>
+</div>
+    </div></div>
+</body>
+</html>
+
+{%endblock%}

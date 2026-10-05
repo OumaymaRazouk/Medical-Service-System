@@ -1,0 +1,111 @@
+{% extends user.template_name %} 
+{%block content%}
+{% load static %}
+
+
+<div class="page-wrapper">
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 align-self-center">
+                <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Add Employee</h3>
+                  <div class="nk-block-des text-soft">
+                                    <p>You can add Employee by filling out these fields.</p>
+                 </div>
+            </div>
+    </div>
+    </div>                      
+    <div class="container-fluid">
+        <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label" for="{{ form.name.id_for_label }}">Name :</label>
+                            <div class="form-group mb-3">
+                                <input required type="text" name="name" class="form-control" placeholder="Name">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="{{ form.date_of_birth.id_for_label }}">Date of Birth :</label>
+                            <div class="form-group mb-3">
+                                <input required type="date" name="date_of_birth" class="form-control" placeholder="Date of Birth">
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="col-md-6">
+                            <label class="form-label" for="{{ form.origin.id_for_label }}">Origin :</label>
+                            <div class="form-group mb-3">
+                                <input type="text" name="origin" class="form-control" placeholder="Origin">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="{{ form.address.id_for_label }}">Address :</label>
+                            <div class="form-group mb-3">
+                                <input type="text"  class="form-control" name="address" placeholder="Address" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="{{ form.family_status.id_for_label }}">Family Status :</label>
+                            <div class="form-group mb-3">
+                                <select class="form-control" name="family_status">
+                                    <option value="single">Single</option>
+                                    <option value="married">Married</option>
+                                    <option value="divorced">Divorced</option>
+                                    <option value="widowed">Widowed</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="{{ form.company.id_for_label }}">Company :</label>
+                            {{form.company}}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="{{ form.start_date.id_for_label }}">Start Date :</label>
+                            <div class="form-group mb-3">
+                                <input required type="date" name="start_date" class="form-control" placeholder="Start Date">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="{{ form.department.id_for_label }}">Department :</label>
+                            <div class="form-group mb-3">
+                                <input  type="text" name="department" class="form-control" placeholder="Department">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="{{ form.job_position.id_for_label }}">Job Position :</label>
+                            <div class="form-group mb-3">
+                                <input  type="text" name="job_position" class="form-control" placeholder="Job Position">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="{{ form.area.id_for_label }}">Area :</label>
+                            {{form.area}}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="{{ form.photo.id_for_label }}">Photo :</label>
+                            <div class="form-group mb-3">
+                                <input required type="file" name="photo" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-info">Add</button>
+                            <button type="reset" class="btn btn-dark"><a href="{% url 'patients' %}" class="text-white">Reset</a></button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}

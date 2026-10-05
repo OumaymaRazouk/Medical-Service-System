@@ -1,0 +1,109 @@
+{% extends 'Medecin/medecin.html' %}
+{% block content %}
+{% load static %}
+
+
+<div class="page-wrapper">
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 align-self-center">
+                <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Add Fiche médicale</h3>
+                  <div class="nk-block-des text-soft">
+                                    <p>You can add Employee by filling out these fields.</p>
+                 </div>
+            </div>
+    </div>
+    </div>                      
+    <div class="container-fluid">
+        <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body"> 
+                                    <form method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                        
+                            {% if form.date.errors %}
+                                <div class="alert alert-danger">
+                                    {% for error in form.date.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="{{ form.date.id_for_label }}">Date</label>
+                                {{ form.date }}
+                        
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="{{ form.taille.id_for_label }}">Taille</label>
+                                {{ form.taille }}
+                                {{ form.taille.errors }}
+                            </div>
+                            <div class="form-group">
+                                <label for="{{ form.poids.id_for_label }}">Poids</label>
+                                {{ form.poids }}
+                                {{ form.poids.errors }}
+                            </div>
+                       
+                            <div class="form-group">
+                                <label for="{{ form.T_A.id_for_label }}">T.A</label>
+                                {{ form.T_A }}
+                                {{ form.T_A.errors }}
+                            </div>
+                            <div class="form-group">
+                                <label for="{{ form.A_V.id_for_label }}">A.V</label>
+                                {{ form.A_V }}
+                                {{ form.A_V.errors }}
+                            </div>
+                        </div>    
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="{{ form.pouls.id_for_label }}">Pouls</label>
+                                {{ form.pouls }}
+                                {{ form.pouls.errors }}
+                            </div>
+                            <div class="form-group">
+                                <label for="{{ form.Glycemie.id_for_label }}">Glycemie</label>
+                                {{ form.Glycemie }}
+                                {{ form.Glycemie.errors }}
+                            </div>
+                            <div class="form-group">
+                                <label for="{{ form.Albumin.id_for_label }}">Albumin</label>
+                                {{ form.Albumin }}
+                                {{ form.Albumin.errors }}
+                            </div>
+                            <div class="form-group">
+                                <label for="{{ form.Glucose.id_for_label }}">Glucose</label>
+                                {{ form.Glucose }}
+                                {{ form.Glucose.errors }}
+                            </div>
+                            <div class="form-group">
+                                <label for="{{ form.Medecin_de_travail.id_for_label }}">Médecin de Travail</label>
+                                {{ form.Medecin_de_travail }}
+                                {{ form.Medecin_de_travail.errors }}
+                            </div>
+                        </div>
+                        </div>
+                        <div class="form-actions">
+                            <div class="text-end">
+                                        <button type="submit" class="btn btn-primary col-4">Ajouter</button>
+                                    </div>
+                                </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    </div>
+</div>
+                        
+{%endblock%}
+                        
+                        
+                                   
+            

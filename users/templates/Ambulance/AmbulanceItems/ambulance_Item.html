@@ -1,0 +1,71 @@
+{% extends 'infirmier/infirmier.html' %}
+{% block content %}
+<div class="page-wrapper">
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-7 align-self-center">
+                <h2 class="page-title text-truncate text-dark font-weight-medium mb-1">List of Ambulance Items</h2>
+                <div class="d-flex align-items-center">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb m-0 p-0">
+                            <li class="breadcrumb-item">Home </li>
+                            <li class="breadcrumb-item text-muted active" aria-current="page">Pharmacy</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-5 align-self-center">
+                <div class="customize-input float-end">
+                    <a href="{% url 'create_ambulance_Item' %}" class="btn btn-primary">Add Item</a>
+                    <a href="{% url 'download_ambulance_Items' 'pdf' %}" class="btn btn-secondary">
+                        <i class="fas fa-file-pdf mr-1"></i> Download PDF
+                    </a>
+                    
+                    <a href="{% url 'download_ambulance_Items' 'excel' %}" class="btn btn-secondary">
+                        <i class="fas fa-file-excel mr-1"></i> Download Excel
+                    </a>
+
+                
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body ">
+  
+<div class="table-responsive">
+<table id="zero_config" class="table border table-striped table-bordered text-nowrap">
+                        
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th>Purchase Date</th>
+                            <th class="action-column">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in ambulance_items %}
+                        <tr>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>{{ item.purchase_date }}</td>
+            
+                            <td>
+                                <a href="{% url 'view_ambulance_Item' item.pk %}" class="btn btn-sm btn-info">View</a>
+                                <a href="{% url 'update_ambulance_Item' item.pk %}" class="btn btn-sm btn-success">Edit</a>
+                                <a href="{% url 'delete_ambulance_Item' item.pk %}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

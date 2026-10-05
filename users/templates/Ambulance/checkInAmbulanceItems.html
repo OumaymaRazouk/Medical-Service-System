@@ -1,0 +1,49 @@
+{% extends 'infirmier/infirmier.html' %}
+{% block content %}
+<div class="page-wrapper">
+
+<h2>Checklist</h2>
+<div class="card-body">
+    <div class="table-responsive">
+        <form method="post" action="{% url 'enregistrer_liste_controle' %}">
+            {% csrf_token %}
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th><h3>Ambulance Items</h3></th>
+                        <th>Check In</th>
+                        <th>Remark</th>  <!-- Add the Remark header column -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in ambulance_items %}
+                    <tr>
+                        <td>{{ item.name }}</td>
+                        <td><input type="checkbox" name="ambulance_item_{{ item.pk }}"></td>
+                        <td><input type="text" name="remark_item_{{ item.pk }}" class="form-control" placeholder="Enter remark"></td>  <!-- Add the Remark input field -->
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <thead>
+                    <tr>
+                        <th><h3>Ambulance Medicines</h3></th>
+                        <th>Check In</th>
+                        <th>Remark</th>  <!-- Add the Remark header column -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for medicine in ambulance_medicines %}
+                    <tr>
+                        <td>{{ medicine.name }}</td>
+                        <td><input type="checkbox" name="ambulance_medicine_{{ medicine.pk }}"></td>
+                        <td><input type="text" name="remark_medicine_{{ medicine.pk }}" class="form-control" placeholder="Enter remark"></td>  <!-- Add the Remark input field -->
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+</div>
+</div>
+{% endblock %}

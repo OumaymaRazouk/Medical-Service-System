@@ -1,0 +1,72 @@
+{% extends 'infirmier/infirmier.html' %}
+{% block content %}
+<div class="page-wrapper">
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-7 align-self-center">
+                <h2 class="page-title text-truncate text-dark font-weight-medium mb-1">List of Ambulance Medicines</h2>
+                <div class="d-flex align-items-center">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb m-0 p-0">
+                            <li class="breadcrumb-item">Home </li>
+                            <li class="breadcrumb-item text-muted active" aria-current="page">Ambulance</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-5 align-self-center">
+                <div class="customize-input float-end">
+                    <a href="{% url 'create_ambulance_medicine' %}" class="btn btn-primary">Add Medicine</a>
+                    <a href="{% url 'download_ambulance_medicines' 'pdf' %}" class="btn btn-secondary">
+                        <i class="fas fa-file-pdf mr-1"></i> Download PDF
+                    </a>
+                    
+                    <a href="{% url 'download_ambulance_medicines' 'excel' %}" class="btn btn-secondary">
+                        <i class="fas fa-file-excel mr-1"></i> Download Excel
+                    </a>
+
+                
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+<div class="table-responsive">
+<table id="zero_config" class="table border table-striped table-bordered text-nowrap">
+                        
+            
+                    <thead>
+                        <tr>
+                            <th>N°lot</th>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th>Expiration Date</th>
+                            <th class="action-column">Action</th> <!-- Add a custom class to the Action column -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ambulance_medicine in ambulance_medicines %} 
+                        <tr>
+                            <td>{{ ambulance_medicine.N_lot }}</td>
+                            <td>{{ ambulance_medicine.name }}</td> 
+                            <td>{{ ambulance_medicine.quantity }}</td> 
+                            <td>{{ ambulance_medicine.expiration_date }}</td>
+                            <td>
+                                <a href="{% url 'view_ambulance_medicine' ambulance_medicine.pk %}" class="btn btn-sm  btn-info">View</a> <!-- Update the URL name -->
+                                <a href="{% url 'update_ambulance_medicine' ambulance_medicine.pk %}" class="btn btn-sm btn-success">Edit</a> <!-- Update the URL name -->
+                                <a href="{% url 'delete_ambulance_medicine' ambulance_medicine.pk %}" class="btn btn-sm btn-danger" onclick="return confirm('Confirmation ?')">Delete</a> <!-- Update the URL name -->
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

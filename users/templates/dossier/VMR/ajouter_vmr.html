@@ -1,0 +1,68 @@
+{% extends 'Medecin/medecin.html' %}
+
+{% block content %}
+
+<h1>{{ menu_title }}</h1>
+<p>{{ menu_content }}</p>
+<div class="page-wrapper">
+<div class="row">
+  <div class="form-container">
+
+    <div class="card my-5" style="margin:70px;">
+    <center><h1 class="highlight-underline">PHYSICAL FITNESS CERTIFICATE</h1></center>
+    <center><h2>Return to Work</h2></center>
+      <br>
+      <div  style="margin:15px;">
+      <p>I, the undersigned <B>{{user}}</B>, Occupational Health Physician at NOMAC,</p>
+      <p>Certify that I have examined today:</p>
+      <p class="left-space">Ms/Miss/Mr: <B>{{patient.name}}</B></p>
+      <p class="left-space">Date of Birth: <B>{{patient.date_of_birth|date:"d-m-Y "}}</B></p>
+      <p class="left-space">Full Address: <B>{{patient.address}}</B></p>
+      <p class="left-space">Employed at: <B>{{patient.company}}</B></p>
+      <p class="left-space">Date of Recruitment: <B>{{patient.start_date|date:"d-m-Y"}}</B></p>
+      <p >Furthermore, I declare that the candidate is physically sound, free from any tuberculous, mental, cancerous, or poliomyelitic condition.</p>
+     <p > Based on the above observations:</p>
+ 
+    <form method="post">
+    {% csrf_token %}
+    {{visite.texte_certificat}}
+      {{form.texte_certificat}}
+    <div class="left-space">
+        {{ form.choix }}
+    </div>
+      {{ visite.get_choix_display }}
+    <br>
+    <div class="espace-gauche">
+       on: {{ form.date }}
+    </div>
+    <br>
+      
+    <!-- Other form fields ... -->
+      <br>
+      <p class ="more-space">Done in <B> Ouarzazate </B> on <B>{% now "Y-m-d H:i:s" %}</B> </p>
+      <button type="submit" class="btn btn-primary">Save</button>
+
+      <a href="{% url 'add_dossier' %}" ><i class="fa-solid fa-arrow-left">Back</i></a>
+
+
+  </form>
+</div>
+
+  </div>
+</div>
+  </div>
+
+ <style>
+        .highlight-underline {
+            text-decoration: underline;
+        }
+        .left-space {
+            margin-left: 80px; /* You can adjust this value according to your preferences */
+        }
+
+        .more-space{
+            margin-left: 700px;
+        }
+    </style>
+</div>
+{% endblock %}

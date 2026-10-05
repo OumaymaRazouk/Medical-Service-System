@@ -1,0 +1,98 @@
+{% extends 'infirmier/infirmier.html' %}
+{% block content %}
+{% load static %}
+
+<div class="page-wrapper">
+    <div class="nk-content ">
+        <div class="container-fluid">
+            <div class="nk-content-inner">
+                <div class="nk-content-body">
+                    <div class="nk-block-head nk-block-head-sm">
+                        <div class="nk-block-between">
+                            <div class="nk-block-head-content">
+                                <h2 class="nk-block-title page-title">Update : {{ medicine.name|upper }}</h2>
+                                <div class="nk-block-des text-soft">
+                                    <p>You can update Medicine information by changing these fields.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="row">
+                                        <div class="col-12">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                <div class="row gy-6">
+                                    <h3 class="text-center">{{ msg }}</h3>
+                                    <form method="POST" enctype="multipart/form-data"
+                                          action="{% url 'update_medicine' medicine.pk %}">
+                                        {% csrf_token %}
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="{{ form.N_lot.id_for_label }}">N°lot :</label>
+                                                    <div class="form-group mb-3">
+                                                        <input type="text" name="N_lot" class="form-control"
+                                                               placeholder="N°lot" value="{{ medicine.N_lot }}">
+                                                    </div>
+                                                    <label class="form-label" for="{{ form.quantity.id_for_label }}">Quantity</label>
+                                                    <div class="form-group mb-3">
+                                                        <input type="number" name="quantity" class="form-control"
+                                                               placeholder="Quantity" value="{{ medicine.quantity }}">
+                                                    </div>
+                                                    <label class="form-label " for="{{ form.expiration_date.id_for_label }}">Expiration Date :</label>
+                                                    <div class="form-group mb-3">
+                                                        <input type="date" name="expiration_date" class="form-control"
+                                                               placeholder="Expiration Date"
+                                                               value="{{ medicine.expiration_date |date:'Y-m-d'}}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="{{ form.name.id_for_label }}">Name :</label>
+                                                    <div class="form-group mb-3">
+                                                        <input type="text" name="name" class="form-control"
+                                                               placeholder="Name" value="{{ medicine.name }}">
+                                                    </div>
+                                                    
+                                                    <label class="form-label" for="{{ form.reception_date.id_for_label }}">Reception Date :</label>
+                                                    <div class="form-group mb-3">
+                                                        <input type="date" name="reception_date" class="form-control"
+                                                               placeholder="Reception Date"
+                                                               value="{{ medicine.reception_date |date:'Y-m-d'}}">
+                                                    </div>
+                                                    <label class="form-label" for="{{ form.dosage.id_for_label }}">Dosage :</label>
+                                                    <div class="form-group mb-3">
+                                                        <input type="text" name="dosage" class="form-control"
+                                                               placeholder="Dosage 600mg" value="{{ medicine.dosage }}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    
+                                                    <label class="form-label" for="{{ form.presentation.id_for_label }}">Presentation :</label>
+                                                    <div class="form-group mb-6">
+                                                        <textarea class="form-control" name="presentation"
+                                                                  placeholder="Presentation" rows="3">{{ medicine.presentation }}</textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-actions">
+                                                <div class="text-end">
+                                                    <button type="submit" class="btn btn-info">Update</button>
+                                            <button type="reset"  class="btn btn-dark"><a href="{% url 'medicines' %}" class="text-white">Reset</a></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+{% endblock %}

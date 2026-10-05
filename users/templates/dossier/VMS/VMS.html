@@ -1,0 +1,117 @@
+{% extends 'Medecin/medecin.html' %}
+{%block content%}
+<div class="page-wrapper">
+
+<div class="card mt-3 ml-4">
+    <div class="card-header">
+        <center><h1>Systematic medical visit</h1></center>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table id="zero_config" class="table border table-striped table-bordered text-nowrap">
+          
+            <thead>
+                <th>Name</th>
+                <th>Birth date</th>
+                <th>Society</th>
+                <th>Origin</th>
+                <th>Workplace</th>
+                <th>Area</th>
+                <th>Action</th>
+                </thead>
+                <tbody>
+                {% for patient in patients %}
+                <tr>
+                    <td>{{patient.name}}</td>
+                    <td>{{patient.date_of_birth  |date:"d-m-Y"}}</td>
+                    <td>{{patient.company}}</td>
+                    <td>{{patient.origin}}</td>
+                    <td>{{patient.job_position}}</td>
+                    <td>{{patient.area}}</td>
+                    <td class="no-print">
+                        <a href="{% url 'liste_visite_par_patient' patient.id %}" class="btn btn-info" >List</a>
+                </td>
+            </tr>
+            {%endfor%}
+            </tbody>
+        </table>
+
+    </div>
+</div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
+<script>
+$(document).ready(function() {
+            $('#bootstrapdatatable').DataTable({
+                "aLengthMenu": [[3, 5, 10, 25, -1], [3, 5, 10, 25, "All"]],
+                "iDisplayLength": 10,
+
+            });
+        });
+</script>
+<style>
+    .search {
+    display: flex;
+    justify-content: right;
+    margin-top: 0px; /* Add some space between the form and the top of the page */
+
+}
+
+/* Style the form input container */
+.form-input {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 5px;
+    background-color: #f0f0f0;
+}
+
+/* Style the search input field */
+.form-input input[type="search"] {
+    border: none;
+    background: transparent;
+    outline: none;
+    padding: 5px;
+}
+
+/* Style the search button */
+.form-input button {
+    border: none;
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+/* Add some spacing between the search icon and the input field */
+.form-input .bx {
+    margin-right: 5px;
+}
+
+/* On hover, change the background color of the search button */
+.form-input button:hover {
+    background-color: #ddd;
+}
+*,*:after,*:before{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.container{
+	max-width: 1100px;
+	width: 100%;
+}
+</style>
+
+{%endblock%}

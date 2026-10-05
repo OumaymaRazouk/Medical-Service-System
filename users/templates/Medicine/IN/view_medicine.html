@@ -1,0 +1,53 @@
+{% extends 'infirmier/infirmier.html' %}
+{% block content %}
+<div class="page-wrapper">
+
+<div class="card mt-3 ml-4">
+    <div class="card-header">
+        <h1>Informations of {{ medicine.name}}</h1>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered">
+            <tr>
+                <th>N°lot :</th>
+                <td>{{ medicine.N_lot}}</td>
+            </tr>
+            <tr>
+                <th>Name  :</th>
+                <td>{{ medicine.name }}</td>
+            </tr>
+            <tr>
+                <th>Quantity :</th>
+                <td>{{ medicine.quantity }}</td>
+            </tr>
+            
+            <tr>
+                <th>Expiration Date :</th>
+                <td>{{  medicine.expiration_date}}</td>
+            </tr>
+            <tr>
+                <th>Presentation :</th>
+                <td>{{  medicine.presentation}}</td>
+            </tr>
+           
+            <tr>
+                <th>Reception date :</th>
+                <td>{{  medicine.reception_date}}</td>
+            </tr>
+            <tr>
+                <th>Dosage :</th>
+                <td>{{ medicine.dosage }}</td>
+            </tr>
+           
+            <tr>
+                <th>Status :</th>
+                <td>{{ medicine.status }}</td>
+            </tr>
+        </table>
+        <a href="{% url 'medicines' %}"><i class="fa-solid fa-arrow-right-from-bracket">Back</i></a>
+
+
+    </div>
+</div>
+</div>
+{% endblock %}

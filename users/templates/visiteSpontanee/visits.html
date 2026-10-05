@@ -1,0 +1,75 @@
+{% extends user.template_name %} 
+{%block content%}
+
+ <div class="page-wrapper">
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-7 align-self-center">
+                <h2 class="page-title text-truncate text-dark font-weight-medium mb-1">List of Visits</h2>
+                    <div class="d-flex align-items-center">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb m-0 p-0">
+                            <li class="breadcrumb-item">Home </li>
+                            <li class="breadcrumb-item text-muted active" aria-current="page">Employee</li>
+                        </ol>
+                                                    </nav>
+                                                </div>
+                                            </div>
+                                            <div class="col-5 align-self-center">
+                                                <div class="customize-input float-end">
+                                                    <a href="{% url 'create_visit' %}" class="btn btn-primary">New Visit</a>       
+                                                    <a href="{% url 'download_VisiteMedicaleSpontanee' 'pdf' %}" class="btn btn-secondary">
+                                                        <i class="fas fa-file-pdf mr-1"></i> Download PDF
+                                                    </a>
+                                                    
+                                                    <a href="{% url 'download_VisiteMedicaleSpontanee' 'excel' %}" class="btn btn-secondary">
+                                                        <i class="fas fa-file-excel mr-1"></i> Download Excel
+                                                    </a>     
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="card">
+                                                    
+                                                             
+<div class="table-responsive">
+    <table id="zero_config" class="table border table-striped table-bordered text-nowrap">
+     
+               <thead>
+            <th>Employee</th>
+            <th>Visit Date</th>
+            <th>Temperature</th>
+            <th>Blood Pressure</th>
+            <th>Oxygen Saturation</th>
+            <th>Heart Rate</th>
+            <th>Blood Glucose</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+            {% for visit in visits %}
+        <tr>
+            <td>{{visit.patient.name}}</td>
+            <td>{{visit.visit_date}}</td>
+            <td>{{visit.temperature}}</td>
+            <td>{{visit.blood_pressure}}</td>
+            <td>{{visit.oxygen_saturation}}</td>
+            <td>{{visit.heart_rate}}</td>
+            <td>{{visit.blood_glucose}}</td>
+            <td><a href="{% url 'view_visit' visit.pk%}" class="btn btn-sm btn-info" >View</a></td>
+                    {% endfor %}
+        </tr>
+        </tbody>
+        </table>
+    </div>
+    </div>
+   </div>
+   </div>
+   </div>
+
+</div>
+</div>
+{%endblock%}

@@ -1,0 +1,149 @@
+{% extends 'dossier/dossier.html'  %}
+{% block menu_content %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Two Horizontal Menus</title>
+    <link rel="stylesheet" href="{% static 'css/sty.css'%}">
+
+</head>
+<body>
+
+
+
+<div class="card mt-3 ml-4">
+    <div class="card-header">
+        <h1>Initial Medical Examination of {{patient.name |upper}}</h1>
+    </div>
+    <div class="card-body">
+        <div class="volo">
+            <center><h2>Personal history</h2></center>
+        </div>
+        <table class="table table-bordered">
+    <tr>
+        <th>Record number</th>
+        <td>{{ info.id }}</td>
+    </tr>
+    <tr>
+        <th>Blood group :</th>
+        <td>{{ info.get_groupe_singuins_display }}</td>
+    </tr>
+    <tr>
+        <th>Military situation :</th>
+        <td>{{ info.situation_militaire }}</td>
+    </tr>
+    <tr>
+        <th>Diseases :</th>
+        <td>{{ info.maladies }}</td>
+</tr>
+    <tr>
+        <th>Surgical intervention :</th>
+    <td>{{ info.intervention_chirurgicales }}</td>
+</tr>
+    <tr>
+        <th>Accidents</th>
+    <td>{{ info.accidents }}</td>
+</tr>
+    <tr>
+        <th>Work accidents :</th>
+            <td>{{ info.accidents_travail }}</td>
+</tr>
+
+    <tr>
+        <th>Diseases prof :</th>
+            <td>{{ info.maladies_prof }}</td>
+</tr>
+    <tr>
+        <th>Companions :</th>
+     <td>{{ info.compagnes }}</td>
+</tr>
+    <tr>
+        <th>Injuries :</th>
+    <td>{{ info.blessures }}</td>
+</tr>
+    <tr>
+        <th>IPP</th>
+    <td>{{ info.IPP }}</td>
+</tr>
+        </table>
+         <div class="volo">
+                <center><h2>Hereditary and family history</h2></center>
+            </div>
+        <table class="table table-bordered">
+
+    <tr>
+        <th> Father</th>
+     <td>{{ info.ant_pere }}</td>
+</tr>
+    <tr>
+        <th>Mother</th>
+    <td>{{ info.ant_mere }}</td>
+</tr>
+    <tr>
+        <th>Brothers</th>
+    <td>{{ info.ant_freres }}</td>
+</tr>
+    <tr>
+        <th>Sisters</th>
+    <td>{{ info.ant_soeurs }}</td>
+</tr>
+    <tr>
+        <th>Conjunct :</th>
+    <td>{{ info.ant_conjoint }}</td>
+</tr>
+    <tr>
+        <th> Childrens :</th>
+    <td>{{ info.ant_enfant }}</td>
+</tr>
+    <tr>
+        <th>Professional :</th>
+    <td>{{ info.ant_professionneles }}</td>
+</tr>
+</table>
+        <div class="volo">
+            <center><h2>Vaccination serotherapys</h2></center>
+        </div>
+<table class="table table-bordered">
+    <tr>
+        <th>Smallpox :</th>
+    <td>{{ info.variole }}</td>
+</tr>
+    <tr>
+        <th>Diphtheria :</th>
+    <td>{{ info.diphterie }}</td>
+</tr>
+    <tr>
+        <th>Tetanus :</th>
+    <td>{{ info.tetanos }}</td>
+</tr>
+    <tr>
+        <th>TAB :</th>
+    <td>{{ info.tab }}</td>
+</tr>
+    <tr>
+        <th> TABDT :</th>
+    <td>{{ info.tabdt }}</td>
+</tr>
+    <tr>
+        <th>Others :</th>
+    <td>{{ info.autres }}</td>
+</tr>
+    <tr>
+        <th>Serum :</th>
+    <td>{{ info.serum }}</td>
+    </tr>
+
+
+</table>
+    </div></div>
+</body>
+{% endblock %}
+
+<style>
+    .volo {
+        background-color: #04AF4F; /* Change to your desired background color */
+        padding: 10px; /* Add padding for better spacing */
+    }
+</style>
+

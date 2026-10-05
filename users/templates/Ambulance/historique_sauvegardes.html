@@ -1,0 +1,50 @@
+{% extends 'infirmier/infirmier.html' %}
+{% block content %}
+<div class="page-wrapper">
+
+<h2>Backup History</h2>
+<a href="{% url 'liste_controle' %}" class="btn btn-primary">New Check-In</a>   
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Backup Date</th>
+                    <th>Save File</th>
+                    <th>Upload File</th> <!-- Add a new column for file upload -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for log in check_in_Historys %}
+                <tr>
+                    <td>{{ log.date_sauvegarde }}</td>
+                    <td>
+                        {% if log.file_pdf %}
+                            <a href="{{ log.file_pdf.url }}" target="_blank">Save File</a>
+                        {% else %}
+                            No PDF File
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if log.other_file %}
+                            <a href="{{ log.other_file.url }}" target="_blank">Upload File</a>
+                        {% else %}
+                            No Upload File
+                        {% endif %}
+                    </td>
+                    <td>
+                        <!-- Add a file input field to upload the other file -->
+                        <form method="post" enctype="multipart/form-data" action="{% url 'enregistrer_fichier' log.pk %}">
+                            {% csrf_token %}
+                            <input type="file" name="other_file">
+                            <button type="submit" class="btn btn-success">Upload</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+{% endblock %}

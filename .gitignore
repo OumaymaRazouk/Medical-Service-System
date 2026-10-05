@@ -1,0 +1,27 @@
+# Local environments and secrets
+env/
+venv/
+.venv/
+.env
+.env.*
+!.env.example
+auth_project/settings_local.py
+Prerequis.txt
+
+# Python and tools
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.idea/
+.vscode/
+*.log
+
+# Private databases, uploaded medical records and photos
+*.sqlite3
+*.sqlite3-*
+*.sql
+*.sql.gz
+/data/
+/user_photos/
+/media/
+/staticfiles/

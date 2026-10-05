@@ -1,0 +1,266 @@
+{% extends 'Medecin/medecin.html' %}
+{% block content %}
+{% load static %}
+
+<div class="page-wrapper">
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 align-self-center">
+                <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Add Medical Information</h3>
+                  <div class="nk-block-des text-soft">
+                                    <p>You can add medical information by filling out these fields.</p>
+                 </div>
+            </div>
+    </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                   <form method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="form-body">
+                                            <div class="row"> 
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="{{ form.numero.id_for_label }}">Medical Record Number:</label>
+                                                      {{ form.numero }}
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label" for="{{ form.date.id_for_label }}">Date :</label> {{ form.date }}
+                                                </div>
+                                            </div>
+                                            <div class="row" >  
+                                                <div class="col-md-2">
+                                                    <label class="form-label" for="{{ form.denture.id_for_label }}">Denture:</label>
+                                                    {{ form.denture }}
+                                                
+                                                </div>   
+                                                <div class="col-md-2">
+                                                    <spam>Audition</spam><br/>
+                                                    <label class="form-label" for="{{ form.audition_od.id_for_label }}">OD:</label>
+                                                    {{ form.audition_od }}<br/>
+                                                    <label class="form-label" for="{{ form.audition_og.id_for_label }}">OG:</label>
+                                                    {{ form.audition_og }}
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <spam>Vision :</spam><br/>  
+                                                    <label class="form-label" for="{{ form.vision_od.id_for_label }}">OG:</label>
+                                                    {{ form.vision_og }}<br/>
+                                                    <label class="form-label" for="{{ form.vision_od.id_for_label }}">OD:</label>
+                                                    {{ form.vision_od }}
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <br/>
+                                                    <label class="form-label" for="{{ form.taille.id_for_label }}">Taille :</label>
+                                                    {{ form.taille }}<br/>
+                                                    <label class="form-label" for="{{ form.poids.id_for_label }}">Poids :</label>
+                                                      {{ form.poids }}
+
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <br/>
+                                                    <label class="form-label" for="{{ form.per_thor.id_for_label }}">Per Thor :</label>
+                                                    {{ form.per_thor }}
+                                                    <br/>
+                                                    <label class="form-label" for="{{ form.cap_resp.id_for_label }}">Cap Resp :</label>
+                                                      {{ form.cap_resp }}
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                               <div class="col-md-16">
+                                                 <label class="form-label" for="{{ form.peau_phaneres.id_for_label }}">Peau Phaneres :</label>
+                                                 {{ form.peau_phaneres }}
+                                               </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                  <label class="form-label" for="{{ form.locomateur.id_for_label }}">APP LOCOMOTEUR (squelette, articulation, muscles) :</label>
+                                                  {{ form.locomateur }}
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label" for="{{ form.dynamometre.id_for_label }}">Dynamometre :</label>
+                                                    {{ form.dynamometre }}
+                                                  </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                  <label class="form-label" for="{{ form.respiratoire.id_for_label }}">Respiratoire :</label>
+                                                  {{ form.respiratoire }}
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <label class="form-label" for="{{ form.radioscopique.id_for_label }}">Radioscopique :</label>
+                                                    {{ form.radioscopique }}
+                                                    <br/>
+                                                    <label class="form-label" for="{{ form.controle.id_for_label }}">controle :</label>
+                                                    {{ form.controle }}
+                                                  </div>
+                                            </div> 
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                  <label class="form-label" for="{{ form.respiratoire.id_for_label }}">Respiratoire :</label>
+                                                  {{ form.respiratoire }}
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <label class="form-label" for="{{ form.radioscopique.id_for_label }}">Radioscopique :</label>
+                                                    {{ form.radioscopique }}
+                                                    <br/>
+                                                    <label class="form-label" for="{{ form.controle.id_for_label }}">controle :</label>
+                                                    {{ form.controle }}
+                                                  </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                  <label class="form-label" for="{{ form.vaisseaux.id_for_label }}">Vaisseaux :</label>
+                                                  {{ form.vaisseaux }}<br/>
+                                                  <label class="form-label" for="{{ form.varices.id_for_label }}">Varices :</label>
+                                                    {{ form.varices }}
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label" for="{{ form.coeur.id_for_label }}">Coeur :</label>
+                                                    {{ form.coeur }}<br/>
+                                                    <label class="form-label" for="{{ form.gangalions.id_for_label }}">Gangalions :</label>
+                                                      {{ form.gangalions }}
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label" for="{{ form.pouls.id_for_label }}">Pouls :</label>
+                                                    {{ form.pouls }}<br/>
+                                                    <label class="form-label" for="{{ form.TA.id_for_label }}">TA :</label>
+                                                      {{ form.TA }}
+                                                </div>
+
+                           
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                  <label class="form-label" for="{{ form.abdomen.id_for_label }}">Abdomen :</label>
+                                                  {{ form.abdomen }}<br/>
+                                                  <label class="form-label" for="{{ form.foie.id_for_label }}">Foie :</label>
+                                                    {{ form.foie }}
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label" for="{{ form.bouche.id_for_label }}">Bouche :</label>
+                                                    {{ form.bouche }}<br/>
+                                                    <label class="form-label" for="{{ form.rate.id_for_label }}">Rate :</label>
+                                                    {{ form.rate }}
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label" for="{{ form.amygdales.id_for_label }}">Amygdales :</label>
+                                                    {{ form.amygdales }}<br/>
+                                                    <label class="form-label" for="{{ form.hernies.id_for_label }}">Hernies :</label>
+                                                    {{ form.hernies }}
+                                                </div>
+
+                           
+                                            </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label class="form-label" for="{{ form.cicatrice.id_for_label }}">Cicatrice :</label>
+                                                {{ form.cicatrice }}<br/>
+                                                <label class="form-label" for="{{ form.blenno.id_for_label }}">Blenno :</label>
+                                                {{ form.blenno }}
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="form-label" for="{{ form.regles.id_for_label }}">Regles :</label>
+                                                {{ form.regles}}<br/>
+                                                
+                                            </div>
+                                            
+                                            <div class="col-md-1"></br><spam>URINE :</spam></div>
+                                            <div class="col-md-3">
+                                                <label class="form-label" for="{{ form.albumine.id_for_label }}">Albumine :</label>
+                                                {{ form.albumine }}<br/>
+                                                <label class="form-label" for="{{ form.blenno.id_for_label }}">sucre :</label>
+                                                {{ form.sucre }}
+                                             
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label class="form-label" for="{{ form.neuro_psychisme.id_for_label }}">Neuro Psychisme :</label>
+                                                {{ form.neuro_psychisme }}<br/>
+                                                <label class="form-label" for="{{ form.nervosisme.id_for_label }}">Nervosisme :</label>
+                                                {{ form.nervosisme }}
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label class="form-label" for="{{ form.tremblement.id_for_label }}">Tremblement :</label>
+                                                {{ form.tremblement}}<br/>
+                                                
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="form-label" for="{{ form.equilibre.id_for_label }}">Equilibre :</label>
+                                                {{ form.equilibre}}<br/>
+                                                <label class="form-label" for="{{ form.romberg.id_for_label }}">Romberg :</label>
+                                                {{ form.romberg}}<br/>
+                                                
+                                            </div>
+                                            
+                                            <div class="col-md-1"></br><spam>Reflxes:</spam></div>
+                                            <div class="col-md-2">
+                                                <label class="form-label" for="{{ form.reflxes_oc.id_for_label }}">OC :</label>
+                                                {{ form.reflxes_oc }}<br/>
+                                                <label class="form-label" for="{{ form.reflexes_trend.id_for_label }}">Trend  :</label>
+                                                {{ form.reflexes_trend  }}
+                                             
+                                            </div>
+                                        </div>  
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label class="form-label" for="{{ form.cutt.id_for_label }}">CUTT :</label>
+                                                {{ form.cutt }}<br/>
+                                                <label class="form-label" for="{{ form.sedimenation.id_for_label }}">sedimenation :</label>
+                                                {{ form.sedimenation }}<br/>
+                                                <label class="form-label" for="{{ form.crachat.id_for_label }}">crachat :</label>
+                                                {{ form.crachat}}<br/>
+                                                <label class="form-label" for="{{ form.selle.id_for_label }}">Selle :</label>
+                                                {{ form.selle}}<br/>
+                                                <label class="form-label" for="{{ form.urines.id_for_label }}">Urines :</label>
+                                                {{ form.urines}}
+                                                
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="form-label" for="{{ form.sang.id_for_label }}">Sang :</label>
+                                                {{ form.sang}}<br/>
+                                                <label class="form-label" for="{{ form.GB.id_for_label }}">GB :</label>
+                                                {{ form.GB}}<br/>
+                                                <label class="form-label" for="{{ form.HB.id_for_label }}">HB :</label>
+                                                {{ form.HB}}<br/>
+                                                <label class="form-label" for="{{ form.lympho.id_for_label }}">Lympho :</label>
+                                                {{ form.lympho}}<br/>
+                                                <label class="form-label" for="{{ form.plq.id_for_label }}">plaquettes:</label>
+                                                {{ form.plq}}<br/>
+                                                
+                                            </div>
+                                            
+                                            
+                                            <div class="col-md-3">
+                                                <label class="form-label" for="{{ form.situation.id_for_label }}">situation :</label>
+                                                {{ form.situation }}<br/>
+                                                <label class="form-label" for="{{ form.surveiller.id_for_label }}">surveiller :</label>
+                                                {{ form.surveiller }}<br/>
+                                                <label class="form-label" for="{{ form.commentaire.id_for_label }}">commentaire :</label>
+                                                {{ form.commentaire }}
+                                             
+                                            </div>
+                                        </div>              
+
+                                        <div class="form-actions">
+                                                <div class="text-end">
+                                                    <button type="submit" class="btn btn-info">Add</button>
+                                                    <button type="reset" class="btn btn-dark"><a href="{% url 'infos' %}" class="text-white">Reset</a></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+                                    </form>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+</div>
+
+{% endblock %}

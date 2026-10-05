@@ -1,0 +1,87 @@
+{% extends 'infirmier/infirmier.html' %}
+{% block content %}
+<div class="page-wrapper">
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-7 align-self-center">
+                <h2 class="page-title text-truncate text-dark font-weight-medium mb-1">List of Medicines</h2>
+                <div class="d-flex align-items-center">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb m-0 p-0">
+                            <li class="breadcrumb-item">Home </li>
+                            <li class="breadcrumb-item text-muted active" aria-current="page">Pharmacy</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-5 align-self-center">
+                <div class="customize-input float-end">
+                    <a href="{% url 'download_medicines' 'pdf' %}" class="btn btn-secondary">
+                        <i class="fas fa-file-pdf mr-1"></i> Download PDF
+                    </a>
+                    
+                    <a href="{% url 'download_medicines' 'excel' %}" class="btn btn-secondary">
+                        <i class="fas fa-file-excel mr-1"></i> Download Excel
+                    </a>
+                   
+                    <a href="{% url 'download_medicines' 'doc' %}" class="btn btn-secondary">
+                        <i class="fas fa-file-word mr-1"></i> Download Word
+                    </a>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+
+<div class="table-responsive">
+<table id="zero_config" class="table border table-striped table-bordered text-nowrap">
+                        
+                    <thead>
+                        <tr>
+                            <th>N°lot</th>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th>Expiration Date</th>
+                            <th>Reception Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for medicine in medicines %}
+                        <tr>
+                            <td>{{ medicine.N_lot }}</td>
+                            <td>{{ medicine.name }}</td>
+                            <td>{{ medicine.quantity }}</td>
+                            <td>{{ medicine.expiration_date }}</td>
+                            <td>{{ medicine.reception_date }}</td>
+                            <!-- Add conditional formatting to display status in red if expired -->
+                            {% if medicine.status == 'Expired' %}
+                            <td style="color: red;">{{ medicine.status }}</td>
+                            {% elif medicine.status == 'Expiring Soon' %}
+                            <td style="color: #f9e803;">{{ medicine.status }}</td>
+                            {% elif medicine.status == 'Low Stock' %}
+                            <td style="color: #f98603;">{{ medicine.status }}</td>
+                            {% else %}
+                            <td style="color: rgb(0, 255, 136);">{{ medicine.status }}</td>
+                            {% endif %}
+                            <td>
+                                <a href="{% url 'view_medicine' medicine.pk %}" class="btn btn-sm btn-info">View</a>
+                                <a href="{% url 'update_medicine' medicine.pk %}" class="btn btn-sm btn-success">Edit</a>
+                                <a href="{% url 'delete_medicine' medicine.pk %}" class="btn btn-sm btn-danger" onclick="return confirm('Confirmation?')">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,167 @@
+{% extends 'infirmier/infirmier.html' %}
+{% block content %}
+import json
+		<!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-7 align-self-center">
+                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Welcome {{ request.user.first_name | upper}}!</h3>
+                        <div class="d-flex align-items-center">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb m-0 p-0">
+                                    <li>Dashboard 
+									</li>
+									<li> <i data-feather="chevron-right"
+                                        class="svg-icon"></i></span></li>
+									<li>
+										<a class="active" href="#"> Home</a>
+									</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- *************************************************************** -->
+                <!-- Start First Cards -->
+                <!-- *************************************************************** -->
+                <div class="row">
+                    <!-- Column -->
+                    <div class="col-md-6 col-lg-3 col-xlg-3">
+                        <div class="card card-hover">
+                            <div class="p-2 bg-primary text-center">
+                                <h1 class="font-light text-white">{{patient_count}}</h1>
+                                <h6 class="text-white">Employees</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                    <div class="col-md-6 col-lg-3 col-xlg-3">
+                        <div class="card card-hover">
+                            <div class="p-2 bg-cyan text-center">
+                                <h1 class="font-light text-white">{{medicine_count}}</h1>
+                                <h6 class="text-white">Medicine In The Office</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                    <div class="col-md-6 col-lg-3 col-xlg-3">
+                        <div class="card card-hover">
+                            <div class="p-2 bg-success text-center">
+                                <h1 class="font-light text-white">{{ambulanceMedicine_count}}</h1>
+                                <h6 class="text-white">Ambulance Medicines</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                    <div class="col-md-6 col-lg-3 col-xlg-3">
+                        <div class="card card-hover">
+                            <div class="p-2 bg-danger text-center">
+                                <h1 class="font-light text-white">{{infirmier_count}}</h1>
+                                <h6 class="text-white">Nurses</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Soon Expired Medicines </h4>
+                                <ul class="list-style-none mb-0">
+                                    {% for medicine in soon_expiring_medicines %}
+                               
+                                    <li class="mt-3">
+                                        <i class="fas fa-square text-primary font-10 me-2"></i>
+                                        <span class="text-muted">{{medicine.name}}</span>
+                                        <span class="text-dark float-end font-weight-medium">{{medicine.quantity}}</span>
+                                    </li>
+                                   {% endfor%}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-12">
+                       
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Expired Medicines </h4>
+                                                <div class="table-responsive">
+                                                    <table class="table border table-striped table-bordered text-nowrap">
+                                                                            
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>N°lot</th>
+                                                                                <th>Name</th>
+                                                                                <th>Quantity</th>
+                                                                                <th>Expiration Date</th>
+                                                                                <th>Reception Date</th>
+                                                                                <th>Status</th>
+                                                                                <th>Actions</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            {% for medicine in expired_medicines %}
+                                                                            
+                                                                            <tr>
+                                                                                <td>{{ medicine.N_lot }}</td>
+                                                                                <td>{{ medicine.name }}</td>
+                                                                                <td>{{ medicine.quantity }}</td>
+                                                                                <td>{{ medicine.expiration_date }}</td>
+                                                                                <td>{{ medicine.reception_date }}</td>
+                                                                                <!-- Add conditional formatting to display status in red if expired -->
+                                                                                
+                                                                                <td style="color: red;">{{ medicine.status }}</td>
+                                                                               
+                                                                                
+                                                                                <td>
+                                                                                   <a href="{% url 'delete_medicine' medicine.pk %}" class="btn btn-sm btn-danger" onclick="return confirm('Confirmation?')">Delete</a>
+                                                                                </td>
+                                                                            </tr>
+                                                                            
+                                                                            {% endfor %}
+                                                                        </tbody>
+                                                                           </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <!-- ============================================================== -->
+                <!-- End Container fluid  -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- footer -->
+                <!-- ============================================================== -->
+                <footer class="footer text-center text-muted">
+                    All Rights Reserved by Freedash. <a
+                        href="https://www.nomac.com/">NOMAC</a>.
+                </footer>
+                <!-- ============================================================== -->
+                <!-- End footer -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Page wrapper  -->
+            <!-- ============================================================== -->
+    
+    {%endblock%}
+    

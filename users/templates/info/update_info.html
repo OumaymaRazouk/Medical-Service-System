@@ -1,0 +1,221 @@
+{% extends 'Medecin/medecin.html' %}
+{% block content %}
+{% load static %}
+
+<div class="page-wrapper">
+    <div class="nk-content">
+        <div class="container-fluid">
+            <div class="nk-content-inner">
+                <div class="nk-content-body">
+                    <div class="nk-block-head nk-block-head-sm">
+                        <div class="nk-block-between">
+                            <div class="nk-block-head-content">
+                                <h2 class="nk-block-title page-title">Update Medical Record: {{ inf.numero }}</h2>
+                                <div class="nk-block-des text-soft">
+                                    <p>You can update the Medical Record information by changing these fields.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nk-block">
+                        <div class="card card-bordered">
+                            <div class="card-inner">
+                                <div class="row gy-5">
+                                    <h3 class="text-center">{{ msg }}</h3>
+                                    <form method="POST" enctype="multipart/form-data" action="{% url 'update_info' inf.pk %}">
+                                        {% csrf_token %}
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="{{ form.numero.id_for_label }}">Medical Record Number:</label>
+                                                    {{ form.numero }}
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="{{ form.groupe_singuins.id_for_label }}">Blood Group:</label>
+                                                    <div class="form-group mb-3">
+                                                        {{ form.groupe_singuins }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="{{ form.situation_militaire.id_for_label }}">Military Situation:</label>
+                                                    <div class="form-group mb-3">
+                                                        {{ form.situation_militaire }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="{{ form.maladies.id_for_label }}">Maladies:</label>
+                                                    <div class="form-group mb-3">
+                                                        {{ form.maladies }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="{{ form.intervention_chirurgicales.id_for_label }}">Surgical Interventions:</label>
+                                                    <div class="form-group mb-3">
+                                                        {{ form.intervention_chirurgicales }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="{{ form.accidents.id_for_label }}">Accidents:</label>
+                                                    <div class="form-group mb-3">
+                                                        {{ form.accidents }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="{{ form.accidents_travail.id_for_label }}">Work-related Accidents:</label>
+                                                    <div class="form-group mb-3">
+                                                        {{ form.accidents_travail }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="{{ form.maladies_prof.id_for_label }}">Professional Illnesses:</label>
+                                                    <div class="form-group mb-3">
+                                                        {{ form.maladies_prof }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="{{ form.compagnes.id_for_label }}">Surgeries (Companions):</label>
+                                                    <div class="form-group mb-3">
+                                                        {{ form.compagnes }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="{{ form.blessures.id_for_label }}">Injuries:</label>
+                                                    <div class="form-group mb-3">
+                                                        {{ form.blessures }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="{{ form.IPP.id_for_label }}">Permanent Partial Disability (IPP):</label>
+                                                    <div class="form-group mb-3">
+                                                        {{ form.IPP }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="{{ form.ant_pere.id_for_label }}">Father's Medical History:</label>
+                                                    <div class="form-group mb-3">
+                                                        {{ form.ant_pere }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="{{ form.ant_mere.id_for_label }}">Mother's Medical History:</label>
+                                                    <div class="form-group mb-3">
+                                                        {{ form.ant_mere }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="{{ form.ant_freres.id_for_label }}">Siblings' Medical History:</label>
+                                                    <div class="form-group mb-3">
+                                                        {{ form.ant_freres }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="{{ form.ant_soeurs.id_for_label }}">Sisters' Medical History:</label>
+                                                    <div class="form-group mb-3">
+                                                        {{ form.ant_soeurs }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="{{ form.ant_conjoint.id_for_label }}">Spouse's Medical History:</label>
+                                                    <div class="form-group mb-3">
+                                                        {{ form.ant_conjoint }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="{{ form.ant_enfant.id_for_label }}">Children's Medical History:</label>
+                                                    <div class="form-group mb-3">
+                                                        {{ form.ant_enfant }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="{{ form.ant_professionneles.id_for_label }}">Professional Medical History:</label>
+                                                    <div class="form-group mb-3">
+                                                        {{ form.ant_professionneles }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="{{ form.variole.id_for_label }}">Vaccination: Variole</label>
+                                                    <div class="form-group mb-3">
+                                                        {{ form.variole }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="{{ form.diphterie.id_for_label }}">Vaccination: Diphterie</label>
+                                                    <div class="form-group mb-3">
+                                                        {{ form.diphterie }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="{{ form.tetanos.id_for_label }}">Vaccination: Tetanos</label>
+                                                    <div class="form-group mb-3">
+                                                        {{ form.tetanos }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="{{ form.tab.id_for_label }}">Vaccination: TAB</label>
+                                                    <div class="form-group mb-3">
+                                                        {{ form.tab }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="{{ form.tabdt.id_for_label }}">Vaccination: TABDT</label>
+                                                    <div class="form-group mb-3">
+                                                        {{ form.tabdt }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="{{ form.autres.id_for_label }}">Other Vaccinations:</label>
+                                                    <div class="form-group mb-3">
+                                                        {{ form.autres }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="{{ form.serum.id_for_label }}">Serum:</label>
+                                                    <div class="form-group mb-3">
+                                                        {{ form.serum }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-actions">
+                                                <div class="text-end">
+                                                    <button type="submit" class="btn btn-info">Update</button>
+                                                    <button type="reset" class="btn btn-dark">
+                                                        <a href="{% url 'infos' %}" class="text-white">Reset</a>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

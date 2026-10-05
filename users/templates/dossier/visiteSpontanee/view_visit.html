@@ -1,0 +1,60 @@
+{% extends 'infirmier/infirmier.html' %}
+
+{% block content %}
+<div class="page-wrapper">
+
+<div class="card mt-3 ml-4">
+    <div class="card-header">
+        <h1>Spontaneous Visit of Employee {{ visit.patient.name }}</h1>
+    </div>
+    <div class="card-body">
+        {% if visit.patient.photo %}
+        <div class="mb-3">
+            <img src="/media/{{ visit.patient.photo }}" width="100px" alt="Patient Photo">
+        </div>
+        {% endif %}
+        <div class="mb-3">
+            <strong>Name:</strong> {{ visit.patient.name }}
+            <strong>Date of Birth:</strong> {{ visit.patient.date_of_birth }} <strong>Age:</strong> {{ visit.patient.age }}
+        </div>
+        <div class="mb-3">
+            
+        </div>
+        <div class="mb-3">
+            <strong>Address:</strong> {{ visit.patient.address }}
+        </div>
+        <div class="mb-3">
+            <strong>Family Status:</strong> {{ visit.patient.family_status }}
+        </div>
+        <div class="mb-3">
+            <strong>Company:</strong> {{ visit.patient.company }}
+        </div>
+        <div class="mb-3">
+            <strong>Department:</strong> {{ visit.patient.department }}
+        </div>
+        <div class="mb-3">
+            <strong>Job Position:</strong> {{ visit.patient.job_position }}
+        </div>
+        <div class="mb-3">
+            <strong>Visit Date:</strong> {{ visit.visit_date }}
+        </div>
+        <div class="mb-3">
+            <strong>Temperature:</strong> {{ visit.temperature }}
+        </div>
+        <div class="mb-3">
+            <strong>Arterial Tension:</strong> {{ visit.arterial_pressure }}
+        </div>
+        <div class="mb-3">
+            <strong>Symptoms:</strong> {{ visit.symptoms }}
+        </div>
+        <div class="mb-3">
+            <strong>Observations:</strong> {{ visit.observations }}
+        </div>
+
+        <a href="{% url 'visits' %}" class="btn btn-primary">
+            <i class="fas fa-arrow-right-from-bracket"></i> Back
+        </a>
+    </div>
+</div>
+</div>
+{% endblock %}

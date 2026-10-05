@@ -1,0 +1,69 @@
+{% extends 'Medecin/medecin.html' %}
+
+{% block content %}
+<div class="page-wrapper">
+<div class="card mt-3 ml-4">
+    <div class="card-header">
+       <center><h1>Medical record</h1></center>
+    </div>
+    <p class="int"><strong>Name</strong>: {{ visite.patient.name}} </p>
+    <p><strong>Company: </strong>{{ visite.patient.company }}</p>
+    <p> <strong>Address: </strong>{{ visite.patient.address }}</p>
+    <div class="card-body">
+        <table class="table table-bordered">
+            <tr>
+                <th>Date:</th>
+                <td>{{ visite.date | date:"d-m-Y" }}</td>
+            </tr>
+            <tr>
+                <th>Size (cm):</th>
+                <td>{{ visite.taille}}</td>
+            </tr>
+
+            <tr>
+                <th>Weight (kg):</th>
+                <td>{{ visite.poids }}</td>
+            </tr>
+
+            <tr>
+                <th>T_A (°f):</th>
+                <td>{{ visite.T_A }}</td>
+            </tr>
+            <tr>
+                <th>A_V:</th>
+                <td>{{ visite.A_V }}</td>
+            </tr>
+            <tr>
+                <th>Pulse (bpm):</th>
+                <td>{{ visite.pouls }}</td>
+            </tr>
+            <tr>
+                <th>Blood sugar (mg/dl):</th>
+                <td>{{ visite.Glycemie }}</td>
+            </tr>
+            <tr>
+                <th>Albumin(mg/l) :</th>
+                <td>{{ visite.Albumin }}</td>
+            </tr>
+            <tr>
+                <th>Glucose (g/l):</th>
+                <td>{{ visite.Glucose }}</td>
+            </tr>
+            <tr>
+                <th>Occupational doctor:</th>
+                <td>{{ visite.Medecin_de_travail }}</td>
+            </tr>
+
+        </table>
+        <a href="{% url 'fiche_médicale' %}"><i class="fa-solid fa-arrow-right-from-bracket">Back</i></a>
+
+
+    </div>
+</div>
+{% endblock %}
+
+<style>
+     p {
+    padding-left: 20px; /* ou la valeur de marge souhaitée */
+}
+</style>

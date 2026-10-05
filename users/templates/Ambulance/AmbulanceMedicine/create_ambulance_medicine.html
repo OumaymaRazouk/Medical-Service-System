@@ -1,0 +1,91 @@
+{% extends 'infirmier/infirmier.html' %}
+{% block content %}
+{% load static %}
+
+<div class="page-wrapper">
+    <div class="nk-content ">
+        <div class="container-fluid">
+            <div class="nk-content-inner">
+                <div class="nk-content-body">
+                    <div class="nk-block-head nk-block-head-sm">
+                        <div class="nk-block-between">
+                            <div class="nk-block-head-content">
+                                <h2 class="nk-block-title page-title">Add Ambulance Medicine</h2>
+                                <div class="nk-block-des text-soft">
+                                    <p>You can add a new Ambulance Medicine by filling in these fields.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="row">
+                                        <div class="col-12">
+                                            <div class="card">
+                                                <div class="card-body">
+                                    <h3 class="text-center">{{ msg }}</h3>
+                                    <form method="post" enctype="multipart/form-data" class="mt-3" >
+                                        {% csrf_token %}
+                                        <div class="form-body">
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <label class="form-label" for="{{ form.N_lot.id_for_label }}">N°lot :</label>
+                                                    <div class="form-group mb-3">
+                                                        <input required type="text" name="N_lot" class="form-control"
+                                                               placeholder="N°lot" >
+                                                    </div>
+                                                    <label class="form-label" for="{{ form.quantity.id_for_label }}">Quantity :</label>
+                                                    <div class="form-group mb-3">
+                                                        <input required type="number" name="quantity" class="form-control"
+                                                               placeholder="Quantity">
+                                                    </div>
+                                                    
+                                                    <label class="form-label" for="{{ form.reception_date.id_for_label }}">Reception Date :</label>
+                                                    <div class="form-group mb-3">
+                                                        <input required type="date" name="reception_date" class="form-control"
+                                                               placeholder="Reception Date" >
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <label class="form-label" for="{{ form.name.id_for_label }}">Name :</label>
+                                                    <div class="form-group mb-3">
+                                                        <input required type="text" name="name" class="form-control"
+                                                               placeholder="Name" >
+                                                    </div>
+                                                    <label class="form-label" for="{{ form.expiration_date.id_for_label }}">Expiration Date :</label>
+                                                    <div class="form-group mb-3">
+                                                        <input required type="date" name="expiration_date" class="form-control"
+                                                               placeholder="Expiration Date" >
+                                                    </div>
+                                                    <label class="form-label" for="{{ form.dosage.id_for_label }}">Dosage :</label>
+                                                    <div class="form-group mb-3">
+                                                        <input required type="text" name="dosage" class="form-control"
+                                                               placeholder="Dosage 500mg" >
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <label class="form-label" for="{{ form.presentation.id_for_label }}">Presentation :</label>
+                                                    <div class="form-group mb-5">
+                                                        <textarea class="form-control" name="presentation"
+                                                                  placeholder="Presentation" rows="3"></textarea>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="form-actions">
+                                                <div class="text-end">
+                                                    <button type="submit" class="btn btn-info">Add</button>
+                                                    <button type="reset"  class="btn btn-dark"><a href="{% url 'ambulance_medicines' %}" class="text-white">Reset</a></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
